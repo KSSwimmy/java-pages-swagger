@@ -40,11 +40,11 @@ public class RestaurantController
                                                          "Default sort order is ascending. " +
                                                          "Multiple sort criteria are supported.")})
     @GetMapping(value = "/restaurants",
-                produces = {"application/json"})
+                produces = {"application/json"}) // an endpoint that returns all the restaurants without sorting and paging
                        public ResponseEntity<?>listAllRestaurants(
             @PageableDefault(page = 0,
-                             size = 5)
-                    Pageable pageable)
+                             size = 5) // Default paging
+                    Pageable pageable) // the pageable param is going to read in everything in the endpoint paths for us
     {
         List<Restaurant> myRestaurants = restaurantService.findAll(pageable);
         return new ResponseEntity<>(myRestaurants, HttpStatus.OK);
